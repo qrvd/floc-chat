@@ -4,6 +4,7 @@
   "description": "chat with your chrome floc",
   "dependencies": {
     "express": "^4.17.1",
+    "sanitize-html": "^2.3.3",
     "socket.io": "^3.0.3"
   },
   "scripts": {
