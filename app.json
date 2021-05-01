@@ -1,0 +1,23 @@
+{
+  "name": "FLOC chat",
+  "description": "chat with your chrome floc",
+  "repository": "https://github.com/qrvd/floc-chat",
+  "website": "https://github.com/qrvd/floc-chat",
+  "success_url": "/",
+  "keywords": [
+    "floc",
+    "chat",
+    "node",
+    "express",
+    "socket.io",
+    "realtime",
+    "websocket"
+  ],
+  "scripts": {
+  },
+  "addons": [
+  ],
+  "env": {
+    "BUILDPACK_URL": "https://github.com/heroku/heroku-buildpack-nodejs"
+  }
+}

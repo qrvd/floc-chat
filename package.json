@@ -1,0 +1,12 @@
+{
+  "name": "floc-chat",
+  "version": "0.0.1",
+  "description": "chat with your chrome floc",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^3.0.3"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
