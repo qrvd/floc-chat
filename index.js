@@ -10,10 +10,15 @@ app.get('/', (req, res) => {
 
 const roomData = {};
 
+function uniqueName() {
+  return "Joe";
+}
+
 io.on('connection', (socket) => {
   socket.emit('chat message', "[Please wait until you are connected...]")
   const state = {};
   socket.once('cohort_id', cohort => {
+    state.username = uniqueName();
     state.cohort = cohort;
     socket.join(state.cohort);
     if (!!roomData[cohort]) {
@@ -21,13 +26,14 @@ io.on('connection', (socket) => {
     } else {
       roomData[cohort] = { numUsers: 1 };
     }
-    io.in(state.cohort).emit('chat message', `[A new user has joined.]`);
+    io.in(state.cohort).emit('chat message', `[${state.username} has joined.]`);
+    socket.emit('chat message', `[You have been assigned the name "${state.username}".]`)
     socket.emit('chat message', "[You have been connected to the chat room for cohort " + `${cohort}.]`);
     socket.emit('chat message', `[There are ${roomData[cohort].numUsers} users in this chat room.]`);
   })
   socket.on('chat message', msg => {
     if (!!state.cohort) {
-      io.in(state.cohort).emit('chat message', sanitizeHtml(msg));
+      io.in(state.cohort).emit('chat message', `<${state.username}> ${sanitizeHtml(msg)}`);
     } else {
       socket.emit('chat message', "[Message could not be sent.]")
     }
